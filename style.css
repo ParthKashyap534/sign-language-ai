@@ -1,0 +1,271 @@
+/* ==========================================================================
+   NEUROSIGN PRO v2.0 — STYLESHEET
+   ========================================================================== */
+
+:root {
+    /* Deep Space Dark Mode Colors */
+    --bg-dark: #050814;
+    --panel-bg: rgba(13, 18, 38, 0.7);
+    --panel-border: rgba(0, 240, 255, 0.2);
+    
+    /* Neon Accents */
+    --neon-cyan: #00f0ff;
+    --neon-cyan-glow: rgba(0, 240, 255, 0.4);
+    --neon-green: #00ff88;
+    
+    /* Typography */
+    --text-main: #ffffff;
+    --text-muted: #8b9bb4;
+    
+    --font-ui: 'Inter', sans-serif;
+    --font-data: 'JetBrains Mono', monospace;
+    --font-display: 'Orbitron', sans-serif;
+}
+
+/* 1. GLOBAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-ui);
+    height: 100vh;
+    overflow: hidden;
+    /* Subtle grid background pattern */
+    background-image: 
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.app-shell {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 2. GLASSMORPHISM PANELS */
+.glass-card {
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(0, 240, 255, 0.5);
+}
+
+/* 3. TOP NAVIGATION BAR */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand-icon {
+    font-size: 28px;
+    color: var(--neon-cyan);
+    filter: drop-shadow(0 0 8px var(--neon-cyan-glow));
+}
+
+.brand-text h1 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+.brand-text span {
+    color: var(--neon-cyan);
+}
+
+.badge {
+    font-family: var(--font-data);
+    font-size: 10px;
+    background: rgba(0, 240, 255, 0.1);
+    color: var(--neon-cyan);
+    border: 1px solid var(--neon-cyan);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* System Status Pill */
+.system-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-data);
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    background: #ff003c; /* Starts offline (red) */
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff003c;
+}
+
+/* 4. MAIN LAYOUT GRID */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 20px;
+    flex: 1;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 15px;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-title i {
+    color: var(--neon-cyan);
+    font-size: 20px;
+}
+
+.header-title h2 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* 5. WEBCAM VIEWPORT */
+.video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.05);
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1); /* Mirrors the camera like a real mirror */
+}
+
+.telemetry-pill {
+    font-family: var(--font-data);
+    font-size: 12px;
+    color: var(--neon-cyan);
+    background: rgba(0, 240, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/* 6. NEURAL TRANSLATION OUTPUT */
+.prediction-display {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.display-label {
+    font-family: var(--font-data);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+}
+
+#current-word {
+    font-family: var(--font-display);
+    font-size: 48px;
+    margin: 20px 0;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 20px var(--neon-cyan-glow);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+/* Confidence Bar */
+.confidence-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-data);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.confidence-track {
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green);
+    transition: width 0.3s ease;
+}
+
+/* 7. DATA BUFFER GAUGE */
+.buffer-gauge-container {
+    background: rgba(0,0,0,0.3);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid #b026ff;
+}
+
+.gauge-label {
+    font-family: var(--font-data);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.gauge-track {
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.gauge-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #b026ff, var(--neon-cyan));
+    transition: width 0.1s linear;
+}

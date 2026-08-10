@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroSign Pro v2.0</title>
+    
+    <!-- Standard CSS Link -->
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- MediaPipe AI Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="app-shell">
+        <header class="top-bar glass-card">
+            <div class="brand">
+                <i class="fa-solid fa-microchip brand-icon"></i>
+                <div class="brand-text">
+                    <h1>Neuro<span>Sign</span></h1>
+                </div>
+                <span class="badge">V2.0</span>
+            </div>
+            
+            <div class="header-actions">
+                <div class="system-badge">
+                    <div class="indicator-dot"></div>
+                    <span id="system-status-text">SYSTEM OFFLINE</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-grid">
+            <section class="viewport-panel glass-card">
+                <div class="card-header">
+                    <div class="header-title">
+                        <i class="fa-solid fa-camera-retro"></i>
+                        <h2>Spatial Vision Engine</h2>
+                    </div>
+                    <div class="telemetry-pill" id="fps-display">
+                        <i class="fa-solid fa-bolt"></i> 0 FPS
+                    </div>
+                </div>
+
+                <div class="video-container">
+                    <video id="webcam_video" autoplay playsinline style="display: none;"></video>
+                    <canvas id="output_canvas" width="640" height="480"></canvas>
+                </div>
+            </section>
+
+            <section class="controls-panel glass-card">
+                <div class="card-header">
+                    <div class="header-title">
+                        <i class="fa-solid fa-brain"></i>
+                        <h2>Neural Translation</h2>
+                    </div>
+                </div>
+
+                <div class="prediction-display">
+                    <span class="display-label">CURRENT DETECTED SIGN</span>
+                    <h2 id="current-word">...</h2>
+                    
+                    <div class="confidence-header">
+                        <span>AI Confidence Score</span>
+                        <span id="confidence-percentage">0%</span>
+                    </div>
+                    <div class="confidence-track">
+                        <div class="confidence-fill" id="confidence-fill"></div>
+                    </div>
+                </div>
+
+                <div class="buffer-gauge-container">
+                    <div class="gauge-label">FRAME BUFFER (<span id="buffer-count">0/30</span>)</div>
+                    <div class="gauge-track">
+                        <div class="gauge-fill" id="buffer-fill"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Standard JS Link -->
+    <script src="script.js"></script>
+</body>
+</html>
